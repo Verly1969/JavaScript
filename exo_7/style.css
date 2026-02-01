@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#conteneur {
+    width: 100vw;
+    height: 100vh;
+    background-color: darkolivegreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    font-size: 10rem;
+    color: gray;
+}
+
+#back{
+    display: flex;
+    justify-content: center;
+    align-self:center;
+}
+
+#progress {
+    height: 5px;
+    width: 100%;
+    align-self: center;
+    border-bottom-right-radius: 2.5px;
+    border-top-right-radius: 2.5px;
+}
