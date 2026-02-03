@@ -27,6 +27,10 @@ window.addEventListener("DOMContentLoaded", () => {
         event.target.parentElement.remove();
     }
 
+    function underlineTodo(event){
+        
+    }
+
     text.addEventListener("keyup", (event) => {
         if (event.key === "Enter") addTodo();
     })
