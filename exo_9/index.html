@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couleurs à gogo</title>
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Couleurs à gogo</h1>
+    <div>
+        <h2>Couleur aléatoire</h2>
+        <p>En clicquant sur le bouton ci-dessous, vous obtiendrez une couleur aléatoire avec ses différents code.</p>
+        <div class="boxButton">
+            <button id="btnAlea">Nouvelle couleur</button>
+            <div id="colorAlea" class="color"></div>
+        </div>
+        <div id="boxCode">
+            <p id="hex"></p>
+            <p id="hsl"></p>
+            <p id="rgb"></p>
+        </div>
+    </div>
+    <div>
+        <h2>Couleur par teinte</h2>
+        <p>Sélectionnez une teinte et obtenez 10 couleurs</p>
+        <div class="boxButton">
+            <select id="select"></select>
+            <div id="colorHue" class="color"></div>
+        </div>
+        <div id="boxColors"></div>
+    </div>
+</body>
+</html>

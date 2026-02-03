@@ -1,0 +1,10 @@
+.boxButton {
+    display: flex;
+}
+
+.color,
+.colortest {
+    width: 50px;
+    height: 20px;
+    margin-left: 10px;
+}
