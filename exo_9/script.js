@@ -1,9 +1,13 @@
 window.addEventListener("DOMContentLoaded", () => {
 
     const popup = document.getElementById("popup");
+    const popup = document.getElementById("popup");
     const hex = document.getElementById("hex");   
     const hsl = document.getElementById("hsl");
     const rgb = document.getElementById("rgb");
+    const nuanceHex = document.getElementById("nuanceHex");
+    const nuanceRgb = document.getElementById("nuanceRgb");
+    const nuanceHsl = document.getElementById("nuanceHsl");    
     const nuanceHex = document.getElementById("nuanceHex");
     const nuanceRgb = document.getElementById("nuanceRgb");
     const nuanceHsl = document.getElementById("nuanceHsl");    
@@ -13,6 +17,15 @@ window.addEventListener("DOMContentLoaded", () => {
     const boxColors = document.getElementById("boxColors");
     const select = document.getElementById("select");
     const pMessage = document.getElementById("pMessage");
+    const codeMessage = document.getElementById("codeMessage");
+    const nuanceMessage = document.getElementById("nuanceMessage");
+
+    // messages
+    const rightClickCopy = "Click droit sur le code pour copier dans le presse-papier ...";
+    const infosMessage = "Cliquez pour plus d'infos ...";
+    const copyMessage = "La donnée est copiée dans le presse-papiers ...";
+
+    // tableau de couleurs
     const codeMessage = document.getElementById("codeMessage");
     const nuanceMessage = document.getElementById("nuanceMessage");
 
@@ -51,6 +64,10 @@ window.addEventListener("DOMContentLoaded", () => {
         displayDetails("hex", hex, color);
         displayDetails("hsl", hsl, color);
         displayDetails("rgb", rgb, color);
+        codeMessage.textContent = rightClickCopy;
+        displayDetails("hex", hex, color);
+        displayDetails("hsl", hsl, color);
+        displayDetails("rgb", rgb, color);
         colorAlea.style.backgroundColor = color.hex;
     }
 
@@ -63,7 +80,11 @@ window.addEventListener("DOMContentLoaded", () => {
         nuanceHex.textContent = "";
         nuanceHsl.textContent = "";
         nuanceRgb.textContent = "";
+        nuanceHex.textContent = "";
+        nuanceHsl.textContent = "";
+        nuanceRgb.textContent = "";
         const nuanceUrl = `${url}random/${nuance}`;
+        pMessage.innerText = " ⇊ click sur la nuance pour afficher les infos ⇊";
         pMessage.innerText = " ⇊ click sur la nuance pour afficher les infos ⇊";
         for (let i = 0; i < 10; i++)
         {
@@ -73,6 +94,13 @@ window.addEventListener("DOMContentLoaded", () => {
             div.classList.add("colortest");
             div.style.backgroundColor = color.hex;
             div.style.border = "solid 1px black";
+            displayMessage(div, infosMessage);
+            div.addEventListener("click", () => {
+                nuanceMessage.textContent = rightClickCopy;
+                displayDetails("hex", nuanceHex, color);
+                displayDetails("rgb", nuanceRgb, color);
+                displayDetails("hsl", nuanceHsl, color);
+            })
             displayMessage(div, infosMessage);
             div.addEventListener("click", () => {
                 nuanceMessage.textContent = rightClickCopy;
@@ -178,7 +206,14 @@ window.addEventListener("DOMContentLoaded", () => {
      * Fonction qui supprime les enfants d'un parent direct
      * 
      * @param {HTMLElement} element 
+     * Fonction qui supprime les enfants d'un parent direct
+     * 
+     * @param {HTMLElement} element 
      */
+    function deleteDiv(element){
+        if (element.childElementCount !== 0){
+            for (let i = 0; element.childElementCount; i++){
+                element.lastElementChild.remove();
     function deleteDiv(element){
         if (element.childElementCount !== 0){
             for (let i = 0; element.childElementCount; i++){
@@ -193,6 +228,8 @@ window.addEventListener("DOMContentLoaded", () => {
     btnAlea.addEventListener("click", randomColor);
 
     select.addEventListener("change", () => {
+        deleteDiv(boxColors);
+        nuanceMessage.textContent = "";
         deleteDiv(boxColors);
         nuanceMessage.textContent = "";
         const element = select.selectedIndex;
