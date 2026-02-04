@@ -1,15 +1,27 @@
 window.addEventListener("DOMContentLoaded", () => {
 
+    const popup = document.getElementById("popup");
     const hex = document.getElementById("hex");   
     const hsl = document.getElementById("hsl");
     const rgb = document.getElementById("rgb");
+    const nuanceHex = document.getElementById("nuanceHex");
+    const nuanceRgb = document.getElementById("nuanceRgb");
+    const nuanceHsl = document.getElementById("nuanceHsl");    
     const btnAlea = document.getElementById("btnAlea");
     const colorAlea = document.getElementById("colorAlea");
     const colorHue = document.getElementById("colorHue");
     const boxColors = document.getElementById("boxColors");
     const select = document.getElementById("select");
     const pMessage = document.getElementById("pMessage");
+    const codeMessage = document.getElementById("codeMessage");
+    const nuanceMessage = document.getElementById("nuanceMessage");
 
+    // messages
+    const rightClickCopy = "Click droit sur le code pour copier dans le presse-papier ...";
+    const infosMessage = "Cliquez pour plus d'infos ...";
+    const copyMessage = "La donnée est copiée dans le presse-papiers ...";
+
+    // tableau de couleurs
     const colorTab = 
         [
             "red", 
@@ -29,13 +41,12 @@ window.addEventListener("DOMContentLoaded", () => {
     //#region Fonction
     async function randomColor(){
         const randomUrl = url + `random`;
-        console.log(`Random url: ${randomUrl}`);
         const response = await fetch(randomUrl);
         const color = await response.json();
-        hex.textContent = `Code Héxadécimal: ${color.hex}`;
-        hsl.textContent = `Code HSL: ${color.hsl}`;
-        rgb.textContent = `Code RGB: ${color.rgb}`;
-        
+        codeMessage.textContent = rightClickCopy;
+        displayDetails("hex", hex, color);
+        displayDetails("hsl", hsl, color);
+        displayDetails("rgb", rgb, color);
         colorAlea.style.backgroundColor = color.hex;
     }
 
@@ -44,9 +55,11 @@ window.addEventListener("DOMContentLoaded", () => {
      * @param {string} nuance 
      */
     async function nuanceAlea(nuance){
+        nuanceHex.textContent = "";
+        nuanceHsl.textContent = "";
+        nuanceRgb.textContent = "";
         const nuanceUrl = `${url}random/${nuance}`;
-        console.log(nuanceUrl);
-        pMessage.innerText = " ⇊ click droit sur la nuance pour afficher les infos ⇊";
+        pMessage.innerText = " ⇊ click sur la nuance pour afficher les infos ⇊";
         for (let i = 0; i < 10; i++)
         {
             const response = await fetch(nuanceUrl);
@@ -55,13 +68,63 @@ window.addEventListener("DOMContentLoaded", () => {
             div.classList.add("colortest");
             div.style.backgroundColor = color.hex;
             div.style.border = "solid 1px black";
+            displayMessage(div, infosMessage);
+            div.addEventListener("click", () => {
+                nuanceMessage.textContent = rightClickCopy;
+                displayDetails("hex", nuanceHex, color);
+                displayDetails("rgb", nuanceRgb, color);
+                displayDetails("hsl", nuanceHsl, color);
+            })
             boxColors.append(div);
-            console.log(color);
         }
     }
 
-    function displayDetails(hex, rgb, hsl){
-        
+    /**
+     * Fonction qui affiche un message selon le besoin
+     * @param {HTMLElement} element 
+     * @param {String} message 
+     */
+    function displayMessage(element, message){
+        element.title = message;
+    }
+
+    function displayDetails(code, element, reponse){
+        switch (code) {
+            case "hex":
+                element.textContent = `Code ${code}: ${reponse.hex}`;
+                displayMessage(element, rightClickCopy);
+                element.addEventListener("contextmenu", (event) => {
+                    event.preventDefault();
+                    saveCode(reponse.hex);
+                });
+                break;
+            case "rgb":
+                element.textContent = `Code ${code}: ${reponse.rgb}`;
+                displayMessage(element, rightClickCopy);
+                element.addEventListener("contextmenu", (event) => {
+                    event.preventDefault();
+                    saveCode(reponse.rgb);
+                })
+                break;
+            case "hsl":
+                element.textContent = `Code ${code}: ${reponse.hsl}`;
+                displayMessage(element, rightClickCopy);
+                element.addEventListener("contextmenu", (event) => {
+                    event.preventDefault();
+                    saveCode(reponse.hsl);
+                })
+                break;
+        }
+    }
+
+    /**
+     * Fonction qui copie dans le presse-papier
+     * 
+     * @param {Object} reponse 
+     */
+    function saveCode(reponse){
+        navigator.clipboard.writeText(reponse);
+        displayPopUp(reponse);
     }
 
     /**
@@ -76,17 +139,32 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function selectHue(){
-        
+    function displayPopUp(donnee){
+        deleteDiv(popup);
+        const message = document.createElement('p');
+        message.textContent = `${copyMessage}`;
+        const valeur = document.createElement("p");
+        valeur.textContent = `Donnée: ${donnee}`;
+
+        popup.append(message);
+        popup.append(valeur);
+        popup.style.display = "block";
+
+        // fermeture de la popup après 2 secondes
+        setTimeout(() => {
+            popup.style.display = "none";
+        }, 2000);
     }
 
     /**
-     * Fonction qui supprime les divs enfants des nuances
+     * Fonction qui supprime les enfants d'un parent direct
+     * 
+     * @param {HTMLElement} element 
      */
-    function deleteDiv(){
-        if (boxColors.childElementCount !== 0){
-            for (let i = 0; i < 10; i++){
-                boxColors.lastElementChild.remove();
+    function deleteDiv(element){
+        if (element.childElementCount !== 0){
+            for (let i = 0; element.childElementCount; i++){
+                element.lastElementChild.remove();
             }
         }
     }
@@ -97,13 +175,12 @@ window.addEventListener("DOMContentLoaded", () => {
     btnAlea.addEventListener("click", randomColor);
 
     select.addEventListener("change", () => {
-        deleteDiv();
+        deleteDiv(boxColors);
+        nuanceMessage.textContent = "";
         const element = select.selectedIndex;
         if (element !== 0){
             colorHue.style.backgroundColor = select[element].value;
-            console.log(select.value);
             nuanceAlea(select.value);
-            console.log(`Elément sélectionné: ${element}`);
         }
         select.selectedIndex = 0;
     })
@@ -111,5 +188,4 @@ window.addEventListener("DOMContentLoaded", () => {
     //#endregion
 
     loadSelect();
-    console.log(`Nombre d'enfants: ${boxColors.childElementCount}`)
 })
