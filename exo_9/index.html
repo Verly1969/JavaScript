@@ -23,13 +23,19 @@
         </div>
     </div>
     <div>
-        <h2>Couleur par teinte</h2>
-        <p>Sélectionnez une teinte et obtenez 10 couleurs</p>
+        <h2>Couleurs par teinte</h2>
+        <p>Sélectionnez une teinte et obtenez 10 nuances aléatoires</p>
         <div class="boxButton">
-            <select id="select"></select>
+            <select id="select">
+                <option value="" selected>Sélectionnez une teinte</option>
+            </select>
             <div id="colorHue" class="color"></div>
         </div>
-        <div id="boxColors"></div>
+        <div>
+            <p id="pMessage"></p>
+            <div id="boxColors"></div>
+        </div>
+        <div id="colorsDetails"></div>
     </div>
 </body>
 </html>
