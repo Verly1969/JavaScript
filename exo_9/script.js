@@ -15,6 +15,11 @@ window.addEventListener("DOMContentLoaded", () => {
     const pMessage = document.getElementById("pMessage");
     const codeMessage = document.getElementById("codeMessage");
     const nuanceMessage = document.getElementById("nuanceMessage");
+    const h1 = document.getElementById("h1");
+    const liAlea = document.getElementById("liAlea");
+    const liTeinte = document.getElementById("liTeinte");
+    const alea = document.getElementById("alea");
+    const teinte = document.getElementById("teinte");
 
     // messages
     const rightClickCopy = "Click droit sur le code pour copier dans le presse-papier ...";
@@ -221,6 +226,18 @@ window.addEventListener("DOMContentLoaded", () => {
             nuanceAlea(select.value);
         }
         select.selectedIndex = 0;
+    })
+
+    liAlea.addEventListener("click", () => {
+        alea.style.display = "block";
+        teinte.style.display = "none";
+        h1.classList.add("position");
+    })
+
+    liTeinte.addEventListener("click", () => {
+        alea.style.display = "none";
+        teinte.style.display = "block";
+        h1.classList.add("position");
     })
 
     //#endregion
