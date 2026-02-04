@@ -1,13 +1,9 @@
 window.addEventListener("DOMContentLoaded", () => {
 
     const popup = document.getElementById("popup");
-    const popup = document.getElementById("popup");
     const hex = document.getElementById("hex");   
     const hsl = document.getElementById("hsl");
-    const rgb = document.getElementById("rgb");
-    const nuanceHex = document.getElementById("nuanceHex");
-    const nuanceRgb = document.getElementById("nuanceRgb");
-    const nuanceHsl = document.getElementById("nuanceHsl");    
+    const rgb = document.getElementById("rgb");   
     const nuanceHex = document.getElementById("nuanceHex");
     const nuanceRgb = document.getElementById("nuanceRgb");
     const nuanceHsl = document.getElementById("nuanceHsl");    
@@ -17,15 +13,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const boxColors = document.getElementById("boxColors");
     const select = document.getElementById("select");
     const pMessage = document.getElementById("pMessage");
-    const codeMessage = document.getElementById("codeMessage");
-    const nuanceMessage = document.getElementById("nuanceMessage");
-
-    // messages
-    const rightClickCopy = "Click droit sur le code pour copier dans le presse-papier ...";
-    const infosMessage = "Cliquez pour plus d'infos ...";
-    const copyMessage = "La donnée est copiée dans le presse-papiers ...";
-
-    // tableau de couleurs
     const codeMessage = document.getElementById("codeMessage");
     const nuanceMessage = document.getElementById("nuanceMessage");
 
@@ -210,10 +197,6 @@ window.addEventListener("DOMContentLoaded", () => {
      * 
      * @param {HTMLElement} element 
      */
-    function deleteDiv(element){
-        if (element.childElementCount !== 0){
-            for (let i = 0; element.childElementCount; i++){
-                element.lastElementChild.remove();
     function deleteDiv(element){
         if (element.childElementCount !== 0){
             for (let i = 0; element.childElementCount; i++){
