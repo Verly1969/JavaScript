@@ -23,10 +23,38 @@ body{
 h1{
     font-size: 4rem;
     color: blue;
-    margin-top: 18.5rem;
+    margin-top: 17rem;
     animation-name: colorAnimation;
     animation-duration: 4s;
     animation-iteration-count: infinite;
+}
+
+h2{
+    font-size: 3rem;
+}
+
+p{
+    font-size: 1.3rem;
+    margin: 5px;
+}
+
+h2,
+p{
+    text-align: center;
+}
+
+button{
+    padding: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.text{
+    background-color: cadetblue;
+    padding: 10px;
+    border-radius: 10px;
+    color: antiquewhite;
 }
 
 .position{
@@ -36,6 +64,7 @@ h1{
 
 .boxButton {
     display: flex;
+    justify-content: center;
 }
 
 #select:hover{
@@ -48,15 +77,19 @@ h1{
 
 #boxColors{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 
 
 .color,
 .colortest {
-    width: 50px;
-    height: 20px;
+    width: 7rem;
+    height: 2rem;
     margin-left: 10px;
+    border: 1px solid black;
 }
 
 .divDetails{
@@ -69,6 +102,7 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 #popup{
@@ -97,6 +131,7 @@ h1{
 
 #liAlea,
 #liTeinte{
+    justify-content: center;
     list-style-type: none;
     font-size: 2.5rem;
     margin: 1rem;
@@ -120,5 +155,22 @@ h1{
 
 #alea,
 #teinte{
+    width: 70%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: antiquewhite;
+    border: 1px solid black;
+    border-radius: 25px;
     display: none;
+}
+
+#hex,
+#hsl,
+#rgb,
+#nuanceHex,
+#nuanceRgb,
+#nuanceHsl{
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }

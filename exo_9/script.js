@@ -198,9 +198,6 @@ window.addEventListener("DOMContentLoaded", () => {
      * Fonction qui supprime les enfants d'un parent direct
      * 
      * @param {HTMLElement} element 
-     * Fonction qui supprime les enfants d'un parent direct
-     * 
-     * @param {HTMLElement} element 
      */
     function deleteDiv(element){
         if (element.childElementCount !== 0){
@@ -239,6 +236,67 @@ window.addEventListener("DOMContentLoaded", () => {
         teinte.style.display = "block";
         h1.classList.add("position");
     })
+
+    nuanceHex.addEventListener("mouseenter", () => {
+        nuanceHex.style.backgroundColor = "gray";
+        nuanceHex.style.color = "white";
+    })
+
+    nuanceRgb.addEventListener("mouseenter", () => {
+        nuanceRgb.style.backgroundColor = "gray";
+        nuanceRgb.style.color = "white";
+    })
+
+    nuanceHsl.addEventListener("mouseenter", () => {
+        nuanceHsl.style.backgroundColor = "gray";
+        nuanceHsl.style.color = "white";
+    })
+
+    nuanceHex.addEventListener("mouseout", () => {
+        nuanceHex.style.backgroundColor = "antiquewhite";
+        nuanceHex.style.color = "black";
+    })
+    
+    nuanceRgb.addEventListener("mouseout", () => {
+        nuanceRgb.style.backgroundColor = "antiquewhite";
+        nuanceRgb.style.color = "black";
+    })
+    
+    nuanceHsl.addEventListener("mouseout", () => {
+        nuanceHsl.style.backgroundColor = "antiquewhite";
+        nuanceHsl.style.color = "black";
+    })
+    
+    hex.addEventListener("mouseenter", () => {
+        hex.style.backgroundColor = "gray";
+        hex.style.color = "white";
+    })
+
+    rgb.addEventListener("mouseenter", () => {
+        rgb.style.backgroundColor = "gray";
+        rgb.style.color = "white";
+    })
+
+    hsl.addEventListener("mouseenter", () => {
+        hsl.style.backgroundColor = "gray";
+        hsl.style.color = "white";
+    })
+
+    hex.addEventListener("mouseout", () => {
+        hex.style.backgroundColor = "antiquewhite";
+        hex.style.color = "black";
+    })
+    
+    rgb.addEventListener("mouseout", () => {
+        rgb.style.backgroundColor = "antiquewhite";
+        rgb.style.color = "black";
+    })
+    
+    hsl.addEventListener("mouseout", () => {
+        hsl.style.backgroundColor = "antiquewhite";
+        hsl.style.color = "black";
+    })    
+
 
     //#endregion
 
